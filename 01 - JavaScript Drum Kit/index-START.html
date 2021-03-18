@@ -58,53 +58,75 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  // Not using keyCode or which properties since they have been depreciated
+  // Not using "keyCode" or "which" properties of the "keydown" event since they have been depreciated
   let body = document.querySelector('body');
   body.addEventListener('keydown', handleKeyDown);
 
 
   function handleKeyDown(e) {
-    pauseAudio();
+    pauseAllAudio();
+    removePlayingClassFromAllKeys();
     let audio;
+    let key;
     switch(e.code) {
       case "KeyA":
         audio = document.querySelector('audio[data-key="65"]');
+        key = document.querySelector('.key[data-key="65"]');
         break;
       case "KeyS":
         audio = document.querySelector('audio[data-key="83"]');
+        key = document.querySelector('.key[data-key="83"]');
         break;
       case "KeyD":
         audio = document.querySelector('audio[data-key="68"]');
+        key = document.querySelector('.key[data-key="68"]');
         break;
       case "KeyF":
         audio = document.querySelector('audio[data-key="70"]');
+        key = document.querySelector('.key[data-key="70"]');
         break;
       case "KeyG":
         audio = document.querySelector('audio[data-key="71"]');
+        key = document.querySelector('.key[data-key="71"]');
         break;
       case "KeyH":
         audio = document.querySelector('audio[data-key="72"]');
+        key = document.querySelector('.key[data-key="72"]');
         break;
       case "KeyJ":
         audio = document.querySelector('audio[data-key="74"]');
+        key = document.querySelector('.key[data-key="74"]');
         break;
       case "KeyK":
         audio = document.querySelector('audio[data-key="75"]');
+        key = document.querySelector('.key[data-key="75"]');
         break;
       case "KeyL":
         audio = document.querySelector('audio[data-key="76"]');
+        key = document.querySelector('.key[data-key="76"]');
         break;  
     }
     if (audio) {
       audio.load();
       audio.play();
     }
+
+    if(key) {
+      key.classList.add('playing');
+    }
   }
 
-  function pauseAudio() {
+  function pauseAllAudio() {
     let audioNodes = document.querySelectorAll('audio');
     audioNodes.forEach(audio => {
       audio.pause();
+    });
+  }
+
+  function removePlayingClassFromAllKeys() {
+    let keyNodes = document.querySelectorAll('.key');
+    keyNodes.forEach(key => {
+      key.classList.remove('playing');
     });
   }
 </script>
