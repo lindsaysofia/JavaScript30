@@ -58,21 +58,59 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  // Not using keyCode or which properties since they have been depreciated
   let body = document.querySelector('body');
   body.addEventListener('keydown', handleKeyDown);
-  body.addEventListener('keyup', handleKeyUp);
 
 
   function handleKeyDown(e) {
+    pauseAudio();
+    let audio;
     switch(e.code) {
       case "KeyA":
-        let audio = document.querySelector('audio[data-key="65"]');
+        audio = document.querySelector('audio[data-key="65"]');
         audio.play();
+        break;
+      case "KeyS":
+        audio = document.querySelector('audio[data-key="83"]');
+        audio.play();
+        break;
+      case "KeyD":
+        audio = document.querySelector('audio[data-key="68"]');
+        audio.play();
+        break;
+      case "KeyF":
+        audio = document.querySelector('audio[data-key="70"]');
+        audio.play();
+        break;
+      case "KeyG":
+        audio = document.querySelector('audio[data-key="71"]');
+        audio.play();
+        break;
+      case "KeyH":
+        audio = document.querySelector('audio[data-key="72"]');
+        audio.play();
+        break;
+      case "KeyJ":
+        audio = document.querySelector('audio[data-key="74"]');
+        audio.play();
+        break;
+      case "KeyK":
+        audio = document.querySelector('audio[data-key="75"]');
+        audio.play();
+        break;
+      case "KeyL":
+        audio = document.querySelector('audio[data-key="76"]');
+        audio.play();
+        break;  
     }
   }
 
-  function handleKeyUp(e) {
-    console.log(e, 'up');
+  function pauseAudio() {
+    let audioNodes = document.querySelectorAll('audio');
+    audioNodes.forEach(audio => {
+      audio.pause();
+    });
   }
 </script>
 
