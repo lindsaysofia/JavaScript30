@@ -64,7 +64,11 @@
 
 
   function handleKeyDown(e) {
-    console.log(e, 'down');
+    switch(e.code) {
+      case "KeyA":
+        let audio = document.querySelector('audio[data-key="65"]');
+        audio.play();
+    }
   }
 
   function handleKeyUp(e) {
