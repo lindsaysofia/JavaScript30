@@ -61,11 +61,11 @@
   // Not using "keyCode" or "which" properties of the "keydown" event since they have been depreciated
   let body = document.querySelector('body');
   body.addEventListener('keydown', handleKeyDown);
+  body.addEventListener('keyup', removePlayingClassFromAllKeys);
 
 
   function handleKeyDown(e) {
     pauseAllAudio();
-    removePlayingClassFromAllKeys();
     let audio;
     let key;
     switch(e.code) {
