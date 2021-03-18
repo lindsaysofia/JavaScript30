@@ -58,7 +58,18 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  let body = document.querySelector('body');
+  body.addEventListener('keydown', handleKeyDown);
+  body.addEventListener('keyup', handleKeyUp);
 
+
+  function handleKeyDown(e) {
+    console.log(e, 'down');
+  }
+
+  function handleKeyUp(e) {
+    console.log(e, 'up');
+  }
 </script>
 
 
