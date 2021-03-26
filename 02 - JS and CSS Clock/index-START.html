@@ -63,6 +63,9 @@
       position: absolute;
       top: 50%;
       transform-origin: right;
+      transform: rotate(90deg);
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 27., 0.58, 1);
     }
 
   </style>
@@ -77,9 +80,9 @@
     const min = date.getMinutes();
     const second = date.getSeconds();
 
-    hourHand.style.transform = `rotate(${((360/12) * hour) + 90}deg)`;
-    minHand.style.transform = `rotate(${((360/60) * min) + 90}deg)`;
-    secondHand.style.transform = `rotate(${((360/60) * second) + 90}deg)`;
+    hourHand.style.transform = `rotate(${(360/12) * hour}deg)`;
+    minHand.style.transform = `rotate(${(360/60) * min}deg)`;
+    secondHand.style.transform = `rotate(${(360/60) * second}deg)`;
     console.log(hour, min, second);
 
     
