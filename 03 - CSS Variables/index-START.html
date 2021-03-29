@@ -60,8 +60,7 @@
   </style>
 
   <script>
-    const img = document.querySelector('img');
-    const highlighter = document.querySelector('.hl');
+    const root = document.querySelector(':root');
 
     const inputs = document.querySelectorAll('input');
     inputs.forEach(input => input.addEventListener('change', handleChange));
@@ -69,13 +68,13 @@
     function handleChange(e) {
       switch(e.target.id) {
         case 'spacing':
-          console.log('spacing');
+          root.style.setProperty('--spacing', `${e.target.value}px`);
           break;
         case 'blur':
-          console.log('blur');
+          root.style.setProperty('--blur', `${e.target.value}px`);
           break;
         case 'base':
-          console.log('base');
+          root.style.setProperty('--base', `${e.target.value}`);
           break;
       }
     }
