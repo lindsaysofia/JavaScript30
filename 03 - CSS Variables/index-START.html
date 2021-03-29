@@ -25,6 +25,11 @@
     /*
       misc styles, nothing to do with CSS variables
     */
+    :root {
+      --spacing: 10px;
+      --blur: 10px;
+      --base: #ffc600;
+    }
 
     body {
       text-align: center;
@@ -41,6 +46,16 @@
 
     input {
       width: 100px;
+    }
+
+    .hl {
+      color: var(--base);
+    }
+    
+    img {
+      background-color: var(--base);
+      padding: var(--spacing);
+      filter: blur(var(--blur));
     }
   </style>
 
