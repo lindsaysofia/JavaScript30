@@ -60,6 +60,25 @@
   </style>
 
   <script>
+    const img = document.querySelector('img');
+    const highlighter = document.querySelector('.hl');
+
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => input.addEventListener('change', handleChange));
+
+    function handleChange(e) {
+      switch(e.target.id) {
+        case 'spacing':
+          console.log('spacing');
+          break;
+        case 'blur':
+          console.log('blur');
+          break;
+        case 'base':
+          console.log('base');
+          break;
+      }
+    }
   </script>
 
 </body>
