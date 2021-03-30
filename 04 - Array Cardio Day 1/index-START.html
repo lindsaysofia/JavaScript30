@@ -45,35 +45,42 @@
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-    let sorted = inventors.sort(sortByBirthdate);
+    
+    // let sorted = inventors.sort(sortByBirthdate);
 
     function sortByBirthdate(firstInventor, secondInventor) {
-      return secondInventor.year - firstInventor.year;
+      return firstInventor.year - secondInventor.year;
     }
 
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
-    let totalYearsInventorsLived = inventors.reduce((accumulator, currentValue) => accumulator + (currentValue.passed - currentValue.year), 0);
+    let totalYearsInventorsLived = inventors.reduce((total, inventor) => total + (inventor.passed - inventor.year), 0);
 
     // 5. Sort the inventors by years lived
-    let sorted2 = inventors.sort(sortByYearsLived);
+
+    // let sorted2 = inventors.sort(sortByYearsLived);
 
     function sortByYearsLived(firstInventor, secondInventor) {
-      return (firstInventor.passed - firstInventor.year) - (secondInventor.passed - secondInventor.year);
+      return (secondInventor.passed - secondInventor.year) - (firstInventor.passed - firstInventor.year);
     }
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+      // const category = document.querySelector('.mw-category');
+      // const links = [...category.querySelectorAll('a')];
+      // const de = links
+      //               .map(link => link.textContent)
+      //               .filter(streetName => streetName.includes('de'));
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-    let sorted3 = people.sort(sortByLastName);
+
+    // let sorted3 = people.sort(sortByLastName);
 
     function sortByLastName(firstPerson, secondPerson) {
-      let firstPersonLastName = firstPerson.split(', ');
-      let secondPersonLastName = secondPerson.split(', ');
+      let [firstPersonLastName, firstPersonFirstName] = firstPerson.split(', ');
+      let [secondPersonLastName, secondPersonFirstName] = secondPerson.split(', ');
       return (firstPersonLastName > secondPersonLastName) ? 1 : -1;
     }
 
@@ -81,10 +88,10 @@
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
-    let dataReduced = data.reduce((accumulator, current) => {
-      let accumulatorCount = accumulator[current] || 0;
-      accumulator[current] = accumulatorCount + 1;
-      return accumulator;
+    let dataReduced = data.reduce((obj, item) => {
+      let itemCount = obj[item] || 0;
+      obj[item] = itemCount + 1;
+      return obj;
     }, {});
 
   </script>
