@@ -111,7 +111,12 @@
   </div>
 
   <script>
+    let panelsContainer = document.querySelector('.panels');
+    panelsContainer.addEventListener('click', handleClick);
 
+    function handleClick(e) {
+      console.log(e.target);
+    }
   </script>
 
 
