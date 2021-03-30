@@ -69,6 +69,13 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    let sorted3 = people.sort(sortByLastName);
+
+    function sortByLastName(firstPerson, secondPerson) {
+      let firstPersonLastName = firstPerson.split(', ');
+      let secondPersonLastName = secondPerson.split(', ');
+      return (firstPersonLastName > secondPersonLastName) ? 1 : -1;
+    }
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
