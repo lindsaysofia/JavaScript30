@@ -17,6 +17,37 @@
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
+// fetch data
+const cities = [];
+
+/* 
+fetch returns a promise, not the actual data. 
+Use .then to get the "blob" of data, type is unknown yet, could be image, etc. Use blob.json() to return another promise.
+Use .then to get the actual data.
+*/
+fetch(endpoint)
+  .then(blob => blob.json())
+  .then(data => cities.push(...data));
+
+const input = document.querySelector('input');
+const suggestions = document.querySelector('.suggestions');
+
+input.addEventListener('input', handleInput);
+
+function handleInput(e) {
+  let searchTerm = e.target.value;
+  suggestions.innerHTML = '';
+  cities.forEach(cityObject => {
+    let city = cityObject.city;
+    let state = cityObject.state;
+    let population = cityObject.population;
+    if (city.includes(searchTerm) || state.includes(searchTerm)) {
+      let li = document.createElement('li');
+      li.textContent = `${cityObject.city}, ${cityObject.state} ${cityObject.population}`;
+      suggestions.appendChild(li);
+    }
+  });
+}
 </script>
 </body>
 </html>
