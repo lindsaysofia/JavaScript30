@@ -74,9 +74,19 @@
       font-size: 4em;
     }
 
+    .panel p:nth-child(1),
+    .panel p:nth-child(3) {
+      visibility: hidden;
+    }
+
     .panel.open {
       font-size: 40px;
       flex-grow: 5;
+    }
+
+    .panel.open p:nth-child(1),
+    .panel.open p:nth-child(3) {
+      visibility: visible;
     }
 
   </style>
