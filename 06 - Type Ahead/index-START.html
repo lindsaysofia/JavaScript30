@@ -29,21 +29,27 @@ fetch(endpoint)
   .then(blob => blob.json())
   .then(data => cities.push(...data));
 
+cities.sort((firstCityObject, secondCityObject) => firstCityObject.population - secondCityObject.population);
+
 const input = document.querySelector('input');
 const suggestions = document.querySelector('.suggestions');
 
 input.addEventListener('input', handleInput);
 
 function handleInput(e) {
-  let searchTerm = e.target.value;
+  let searchTerm = e.target.value.toLowerCase();
+  //reset children each time the input changes
   suggestions.innerHTML = '';
   cities.forEach(cityObject => {
     let city = cityObject.city;
     let state = cityObject.state;
     let population = cityObject.population;
-    if (city.includes(searchTerm) || state.includes(searchTerm)) {
+    if (city.toLowerCase().includes(searchTerm) || state.toLowerCase().includes(searchTerm)) {
       let li = document.createElement('li');
-      li.textContent = `${cityObject.city}, ${cityObject.state} ${cityObject.population}`;
+      let regex = new RegExp(searchTerm, 'gi');
+      city = city.replace(regex, (match) => `<span class="hl">${match}</span>`);
+      state = state.replace(regex, (match) => `<span class="hl">${match}</span>`);
+      li.innerHTML = `<div>${city}, ${state}</div><div>${population}</div>`;
       suggestions.appendChild(li);
     }
   });
