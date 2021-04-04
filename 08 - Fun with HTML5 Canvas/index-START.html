@@ -18,6 +18,8 @@
   let x = 0;
   let y = 0;
   let isDrawing = false;
+  let hue = 0;
+  let direction = true;
 
   canvas.addEventListener('mousedown', handleMouseDown);
   canvas.addEventListener('mousemove', handleMouseMove);
@@ -43,19 +45,14 @@
 
   function drawLine(ctx, x1, y1, x2, y2) {
     ctx.beginPath();
-    ctx.lineWidth = ctx.lineWidth === 25 ? 1 : ctx.lineWidth + 1;
-    let gradient = ctx.createLinearGradient(x1, y1, x2, y2);
-    gradient.addColorStop(0, 'red');
-    gradient.addColorStop(0.2, 'orange');
-    gradient.addColorStop(0.4, 'yellow');
-    gradient.addColorStop(0.6, 'green');
-    gradient.addColorStop(0.8, 'blue');
-    gradient.addColorStop(1, 'purple');
-    ctx.strokeStyle = gradient;
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.stroke();
     ctx.closePath();
+    hue++;
+    direction = (ctx.lineWidth >= 25 || ctx.lineWidth <= 1) ? !direction : direction;
+    ctx.lineWidth = (direction) ? ctx.lineWidth + 1 : ctx.lineWidth - 1;
   }
 </script>
 
