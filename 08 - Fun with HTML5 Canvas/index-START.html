@@ -23,20 +23,37 @@
 
   function handleMouseDown(e) {
     x = e.offsetX;
-    y= e.offsetY;
+    y = e.offsetY;
     isDrawing = true;
-    ctx.moveTo(x, y);
   }
 
   function handleMouseMove(e) {
     if (isDrawing) {
-      ctx.lineTo(e.offsetX, e.offsetY);
-      ctx.stroke();
-  }
+      drawLine(ctx, x, y, e.offsetX, e.offsetY);
+      x = e.offsetX;
+      y = e.offsetY;
     }
+  }
 
   function handleMouseUp(e) {
     isDrawing = false;
+  }
+
+  function drawLine(ctx, x1, y1, x2, y2) {
+    ctx.beginPath();
+    ctx.lineWidth = ctx.lineWidth === 25 ? 1 : ctx.lineWidth + 1;
+    let gradient = ctx.createLinearGradient(x1, y1, x2, y2);
+    gradient.addColorStop(0, 'red');
+    gradient.addColorStop(0.2, 'orange');
+    gradient.addColorStop(0.4, 'yellow');
+    gradient.addColorStop(0.6, 'green');
+    gradient.addColorStop(0.8, 'blue');
+    gradient.addColorStop(1, 'purple');
+    ctx.strokeStyle = gradient;
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+    ctx.closePath();
   }
 </script>
 
