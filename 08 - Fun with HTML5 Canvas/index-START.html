@@ -11,8 +11,8 @@
   let canvas = document.querySelector('canvas');
   // get the contect - built-in HTML object with properties and methods for drawing
   let ctx = canvas.getContext('2d');
-  let clientX = 0;
-  let clientY = 0;
+  let x = 0;
+  let y = 0;
   let isDrawing = false;
 
   canvas.addEventListener('mousedown', handleMouseDown);
@@ -20,16 +20,15 @@
   canvas.addEventListener('mouseup', handleMouseUp);
 
   function handleMouseDown(e) {
-    clientX = e.clientX;
-    clientY = e.clientY;
+    x = e.offsetX;
+    y= e.offsetY;
     isDrawing = true;
-    ctx.moveTo(clientX, clientY);
-    console.log('down');
+    ctx.moveTo(x, y);
   }
 
   function handleMouseMove(e) {
     if (isDrawing) {
-      ctx.lineTo(e.clientX, e.clientY);
+      ctx.lineTo(e.offsetX, e.offsetY);
       ctx.stroke();
   }
     }
@@ -37,17 +36,11 @@
   function handleMouseUp(e) {
     isDrawing = false;
   }
-
 </script>
 
 <style>
   html, body {
     margin: 0;
-  }
-
-  canvas {
-    height: 100vh;
-    width: 100vw;
   }
 </style>
 
