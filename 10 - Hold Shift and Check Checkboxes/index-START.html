@@ -96,6 +96,35 @@
   </div>
 
 <script>
+  let checkboxes = [...document.querySelectorAll('input')];
+  let indexOfLastCheckboxClicked = 0;
+  let shiftKeyPressed = false;
+
+  window.addEventListener('keydown', e => {
+    shiftKeyPressed = e.shiftKey;
+  });
+
+  window.addEventListener('keyup', e => {
+    shiftKeyPressed = e.shiftKey;
+  });
+
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', handleChange);
+  });
+
+  function handleChange(e) {
+    if (indexOfLastCheckboxClicked >= 0 && shiftKeyPressed && e.target.checked) {
+      let indexOfCurrentCheckBoxClicked = checkboxes.findIndex(checkbox => checkbox === e.target);
+      console.log(indexOfLastCheckboxClicked, indexOfCurrentCheckBoxClicked);
+      checkAllBoxesBetween(indexOfLastCheckboxClicked, indexOfCurrentCheckBoxClicked);
+    }
+  }
+
+  function checkAllBoxesBetween(firstIndex, lastIndex) {
+    for (let i = firstIndex; i <= lastIndex; i++) {
+      checkboxes[i].checked = true;
+    }
+  }
 </script>
 </body>
 </html>
