@@ -115,10 +115,9 @@
   function handleChange(e) {
     if (indexOfLastCheckboxClicked >= 0 && shiftKeyPressed && e.target.checked) {
       let indexOfCurrentCheckBoxClicked = checkboxes.findIndex(checkbox => checkbox === e.target);
-      console.log(indexOfLastCheckboxClicked, indexOfCurrentCheckBoxClicked);
       checkAllBoxesBetween(indexOfLastCheckboxClicked, indexOfCurrentCheckBoxClicked);
     }
-    indexOfLastCheckboxClicked = checkboxes.findIndex(checkbox => checkbox === e.target);
+    indexOfLastCheckboxClicked = (e.target.checked) ? checkboxes.findIndex(checkbox => checkbox === e.target) : -1;
   }
 
   function checkAllBoxesBetween(firstIndex, lastIndex) {
