@@ -97,7 +97,7 @@
 
 <script>
   let checkboxes = [...document.querySelectorAll('input')];
-  let indexOfLastCheckboxClicked = 0;
+  let indexOfLastCheckboxClicked = -1;
   let shiftKeyPressed = false;
 
   window.addEventListener('keydown', e => {
@@ -118,10 +118,13 @@
       console.log(indexOfLastCheckboxClicked, indexOfCurrentCheckBoxClicked);
       checkAllBoxesBetween(indexOfLastCheckboxClicked, indexOfCurrentCheckBoxClicked);
     }
+    indexOfLastCheckboxClicked = checkboxes.findIndex(checkbox => checkbox === e.target);
   }
 
   function checkAllBoxesBetween(firstIndex, lastIndex) {
-    for (let i = firstIndex; i <= lastIndex; i++) {
+    let min = Math.min(firstIndex, lastIndex);
+    let max = Math.max(firstIndex, lastIndex);
+    for (let i = min; i <= max; i++) {
       checkboxes[i].checked = true;
     }
   }
