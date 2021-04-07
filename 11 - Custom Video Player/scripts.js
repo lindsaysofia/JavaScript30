@@ -1,15 +1,13 @@
 const video = document.querySelector('video');
 const viewer = document.querySelector('.viewer');
 const toggleButton = document.querySelector('.toggle');
-const volumeSlider = document.querySelector('.volume');
-const playbackRateSlider = document.querySelector('.playback');
+const playerSliders = document.querySelectorAll('.player__slider');
 const backwardButton = document.querySelector('.backward');
 const forwardButton = document.querySelector('.forward');
 
 viewer.addEventListener('click', togglePlay);
 toggleButton.addEventListener('click', togglePlay);
-volumeSlider.addEventListener('change', handleVolume);
-playbackRateSlider.addEventListener('change', handlePlaybackRate);
+playerSliders.forEach(playerSlider => playerSlider.addEventListener('change', handlePlayerSliders));
 backwardButton.addEventListener('click', handleBackwardButton);
 forwardButton.addEventListener('click', handleForwardButton);
 
@@ -23,12 +21,8 @@ function togglePlay() {
   }
 }
 
-function handleVolume() {
-  video.volume = volumeSlider.value;
-}
-
-function handlePlaybackRate() {
-  video.playbackRate = playbackRateSlider.value;
+function handlePlayerSliders(e) {
+  video[e.target.name] = e.target.value;
 }
 
 function handleBackwardButton() {
