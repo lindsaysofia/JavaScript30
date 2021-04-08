@@ -12,8 +12,14 @@ toggleButton.addEventListener('click', togglePlay);
 playerSliders.forEach(playerSlider => playerSlider.addEventListener('change', handlePlayerSliders));
 playerButtons.forEach(playerButton => playerButton.addEventListener('click', handlePlayerButtons));
 progress.addEventListener('mousedown', () => isMouseDown = true);
-progress.addEventListener('mousemove', handleMousemove);
-progress.addEventListener('mouseup', () => isMouseDown = false);
+progress.addEventListener('mousemove', (e) => {
+  if (!isMouseDown) return;
+  updateVideoCurrentTime(e.layerX);
+});
+progress.addEventListener('mouseup', (e) => {
+  isMouseDown = false;
+  updateVideoCurrentTime(e.layerX);
+});
 
 function togglePlay() {
   if (video.paused) {
@@ -30,11 +36,15 @@ function handlePlayerSliders(e) {
 }
 
 function handlePlayerButtons(e) {
-  video.currentTime += +e.target.dataset.skip;
+  updateVideoCurrentTime(video.currentTime + (+e.target.dataset.skip));
 }
 
-function handleMousemove(e) {
-  if (!isMouseDown) return;
-  let progressFilledPercentage = (e.layerX/video.duration) * 100;
-  progressFilled.style.flexBasis = `${progressFilledPercentage}%`;
+function updateVideoCurrentTime(newTime) {
+  video.currentTime = newTime;
+  updateProgressFilled();
+}
+
+function updateProgressFilled() {
+  let progressFilledPercentage = (video.currentTime / video.duration) * 100;
+  progressFilled.style.flexBasis = `${progressFilledPercentage.toFixed(2)}%`;
 }
