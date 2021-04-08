@@ -5,12 +5,15 @@ const playerSliders = document.querySelectorAll('.player__slider');
 const playerButtons = document.querySelectorAll('.player__button');
 const progress = document.querySelector('.progress');
 const progressFilled = document.querySelector('.progress__filled');
+let isMouseDown = false;
 
 viewer.addEventListener('click', togglePlay);
 toggleButton.addEventListener('click', togglePlay);
 playerSliders.forEach(playerSlider => playerSlider.addEventListener('change', handlePlayerSliders));
 playerButtons.forEach(playerButton => playerButton.addEventListener('click', handlePlayerButtons));
-progress.addEventListener('')
+progress.addEventListener('mousedown', () => isMouseDown = true);
+progress.addEventListener('mousemove', handleMousemove);
+progress.addEventListener('mouseup', () => isMouseDown = false);
 
 function togglePlay() {
   if (video.paused) {
@@ -28,4 +31,10 @@ function handlePlayerSliders(e) {
 
 function handlePlayerButtons(e) {
   video.currentTime += +e.target.dataset.skip;
+}
+
+function handleMousemove(e) {
+  if (!isMouseDown) return;
+  let progressFilledPercentage = (e.layerX/video.duration) * 100;
+  progressFilled.style.flexBasis = `${progressFilledPercentage}%`;
 }
