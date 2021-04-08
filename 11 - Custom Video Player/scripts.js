@@ -14,11 +14,13 @@ playerButtons.forEach(playerButton => playerButton.addEventListener('click', han
 progress.addEventListener('mousedown', () => isMouseDown = true);
 progress.addEventListener('mousemove', (e) => {
   if (!isMouseDown) return;
-  updateVideoCurrentTime(e.layerX);
+  let scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+  updateVideoCurrentTime(scrubTime);
 });
 progress.addEventListener('mouseup', (e) => {
   isMouseDown = false;
-  updateVideoCurrentTime(e.layerX);
+  let scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+  updateVideoCurrentTime(scrubTime);
 });
 
 function togglePlay() {
@@ -46,5 +48,5 @@ function updateVideoCurrentTime(newTime) {
 
 function updateProgressFilled() {
   let progressFilledPercentage = (video.currentTime / video.duration) * 100;
-  progressFilled.style.flexBasis = `${progressFilledPercentage.toFixed(2)}%`;
+  progressFilled.style.flexBasis = `${progressFilledPercentage}%`;
 }
