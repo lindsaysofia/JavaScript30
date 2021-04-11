@@ -44,15 +44,16 @@
 
   <script>
     const images = document.querySelectorAll('img.slide-in');
-    images.forEach(image => image.addEventListener('click', handleScroll));
+    window.addEventListener('scroll', debounce(handleScroll));
 
     function handleScroll(e) {
-      let pageHeight = e.pageY;
-      let imageHeight = e.target.height;
-      let scrollHeight = window.scrollY;
-      if (((imageHeight + scrollHeight / 2) <= pageHeight) || (pageHeight <= imageHeight + scrollHeight)) {
-        console.log(show);
-      }
+      images.forEach(image => {
+        if ((image.offsetTop / 2 <= window.scrollY) && window.scrollY <= image.offsetTop * 2) {
+          image.classList.add('active');
+        } else {
+          image.classList.remove('active');
+        }
+      });
     }
     
 
