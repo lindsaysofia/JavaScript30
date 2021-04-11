@@ -48,7 +48,20 @@
 
     function handleScroll(e) {
       images.forEach(image => {
-        if ((image.offsetTop / 2 <= window.scrollY) && window.scrollY <= image.offsetTop * 2) {
+        // if ((image.offsetTop / 2 <= window.scrollY) && window.scrollY <= image.offsetTop * 2) {
+        //   image.classList.add('active');
+        // } else {
+        //   image.classList.remove('active');
+        // }
+
+        //From Wes Bos
+        // want to slide in when image is peeking at half of its height
+        const slideInAt = (window.scrollY + window.innerHeight) - (image.height / 2);
+        // bottom of the image
+        const imageBottom = image.offsetTop + image.height;
+        const isHalfShown = slideInAt > image.offsetTop;
+        const isNotScrolledPast = window.scrollY < imageBottom;
+        if (isHalfShown && isNotScrolledPast) {
           image.classList.add('active');
         } else {
           image.classList.remove('active');
