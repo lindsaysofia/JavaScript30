@@ -30,6 +30,21 @@
   const itemsList = document.querySelector('.plates');
   const items = [];
 
+  addItems.addEventListener('submit', handleSubmit);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    let li = document.createElement('li');
+    let item = e.target[0].value;
+    li.textContent = item;
+    items.push(li);
+    console.log(li);
+  }
+
+  function toggleCheck(e) {
+    e.target.checked = !e.target.checked;
+  }
+
 </script>
 
 
