@@ -35,10 +35,14 @@
   function handleSubmit(e) {
     e.preventDefault();
     let li = document.createElement('li');
-    let item = e.target[0].value;
-    li.textContent = item;
+    let itemName = e.target[0].value;
+    li.innerHTML = `
+      <input type="checkbox" name="input${items.length}" id="input${items.length}" value="${itemName}">
+      <label for="input${items.length}">${itemName}</label>`;
+    li.addEventListener('click', toggleCheck);
     items.push(li);
-    console.log(li);
+    itemsList.innerHTML = items;
+    
   }
 
   function toggleCheck(e) {
