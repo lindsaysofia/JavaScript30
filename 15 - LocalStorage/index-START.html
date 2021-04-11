@@ -41,7 +41,7 @@
       <label for="input${items.length}">${itemName}</label>`;
     li.addEventListener('click', toggleCheck);
     items.push(li);
-    itemsList.innerHTML = items;
+    items.forEach(item => itemsList.appendChild(item));
     
   }
 
