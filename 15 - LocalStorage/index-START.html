@@ -39,14 +39,8 @@
     li.innerHTML = `
       <input type="checkbox" name="input${items.length}" id="input${items.length}" value="${itemName}">
       <label for="input${items.length}">${itemName}</label>`;
-    li.addEventListener('click', toggleCheck);
     items.push(li);
-    items.forEach(item => itemsList.appendChild(item));
-    
-  }
-
-  function toggleCheck(e) {
-    e.target.checked = !e.target.checked;
+    items.forEach(item => itemsList.appendChild(item))
   }
 
 </script>
