@@ -49,9 +49,13 @@
   function createItem(index, itemName, done) {
     let li = document.createElement('li');
     li.innerHTML = `
-      <input type="checkbox" name="input${index}" id="input${index}" value="${itemName}" ${done ? 'checked' : ''}>
-      <label for="input${index}">${itemName}</label>`;
+      <input type="checkbox" name="${index}" id="${index}" value="${itemName}" ${done ? 'checked' : ''} onchange="${handleChange}">
+      <label for="${index}">${itemName}</label>`;
       return li;
+  }
+
+  function handleChange() {
+    items[this.id].done = !items[this.id].done;
   }
 
 </script>
