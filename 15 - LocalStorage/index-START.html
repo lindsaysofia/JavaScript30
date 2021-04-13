@@ -28,21 +28,30 @@
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
-  const items = [];
+  let items = window.localStorage.items ? JSON.parse(window.localStorage.items) : [];
+  for (let i = 0; i < items.length; i++) {
+    let item = items[i];
+    let newListItem = createItem(i, item.text, item.done);
+    itemsList.appendChild(newListItem);
+  }
 
   addItems.addEventListener('submit', handleSubmit);
 
   function handleSubmit(e) {
-    e.preventDefault();
-    items.push(createItem(e.target[0].value));
-    items.forEach(item => itemsList.appendChild(item))
+    let itemName = e.target[0].value;
+    items.push({
+      text: itemName,
+      done: false,
+    });
+    window.localStorage.setItem('items', JSON.stringify(items));
   }
 
-  function createItem(itemName) {
+  function createItem(index, itemName, done) {
     let li = document.createElement('li');
     li.innerHTML = `
-      <input type="checkbox" name="input${items.length}" id="input${items.length}" value="${itemName}">
-      <label for="input${items.length}">${itemName}</label>`;
+      <input type="checkbox" name="input${index}" id="input${index}" value="${itemName}" ${done ? 'checked' : ''}>
+      <label for="input${index}">${itemName}</label>`;
+      return li;
   }
 
 </script>
