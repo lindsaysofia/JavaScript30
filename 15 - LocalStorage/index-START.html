@@ -34,13 +34,15 @@
 
   function handleSubmit(e) {
     e.preventDefault();
+    items.push(createItem(e.target[0].value));
+    items.forEach(item => itemsList.appendChild(item))
+  }
+
+  function createItem(itemName) {
     let li = document.createElement('li');
-    let itemName = e.target[0].value;
     li.innerHTML = `
       <input type="checkbox" name="input${items.length}" id="input${items.length}" value="${itemName}">
       <label for="input${items.length}">${itemName}</label>`;
-    items.push(li);
-    items.forEach(item => itemsList.appendChild(item))
   }
 
 </script>
