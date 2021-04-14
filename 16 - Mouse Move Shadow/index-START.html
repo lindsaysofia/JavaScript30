@@ -42,7 +42,13 @@
   hero.addEventListener('mousemove', handleMousemove);
 
   function handleMousemove(e) {
-    console.log(e.x, e.y);
+    let x = e.x;
+    let y = e.y;
+    h1.style.textShadow = `
+      ${centerX - x}px ${centerY - y}px 0 red,
+      ${x - centerX}px ${y - centerY}px 0 blue,
+      ${centerX - x}px ${y - centerY}px 0 green,
+      ${x - centerX}px ${centerY - y}px 0 purple`;
   }
 
 </script>
