@@ -35,6 +35,16 @@
   </style>
 
 <script>
+  const hero = document.querySelector('.hero');
+  const h1 = document.querySelector('h1');
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+  hero.addEventListener('mousemove', handleMousemove);
+
+  function handleMousemove(e) {
+    console.log(e.x, e.y);
+  }
+
 </script>
 </body>
 </html>
