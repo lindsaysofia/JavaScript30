@@ -48,6 +48,15 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+bands.sort(sortWithoutArticle);
+
+function sortWithoutArticle(firstTitle, secondTitle) {
+  const regex = /^(The )|^(An )|^(A )/;
+  firstTitle = firstTitle.replace(regex, '');
+  secondTitle = secondTitle.replace(regex, '');
+  return firstTitle < secondTitle ? -1 : 1;
+}
+
 
 </script>
 
