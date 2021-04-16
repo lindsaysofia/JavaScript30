@@ -183,15 +183,18 @@
   </ul>
 <script>
   const videos = [...document.querySelectorAll('li')];
-  let totals = videos.reduce((acc, curr) => {
+  let totalSeconds = videos.reduce((acc, curr) => {
     let [videoMinutes, videoSeconds] = curr.dataset.time.split(':');
-    acc.minutes += +videoMinutes;
-    acc.seconds += +videoSeconds;
+    acc += (+videoMinutes * 60) + +videoSeconds;
     return acc;
-  }, {minutes: 0, seconds: 0});
-  totals.minutes %= 60;
-  totals.seconds %= 60;
-  console.table(totals);
+  }, 0);
+  
+  const hours = Math.floor(totalSeconds / 3600);
+  totalSeconds %= 3600;
+  const minutes = Math.floor(totalSeconds / 60);
+  totalSeconds %= 60;
+
+  console.log(hours, minutes, totalSeconds);
 </script>
 </body>
 </html>
