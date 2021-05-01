@@ -27,6 +27,12 @@
 
   <script>
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+    const links = document.querySelectorAll('li');
+    links.forEach(link => addEventListener('mouseover', handleMouseover));
+
+    function handleMouseover(e) {
+      console.log(e.target.tagName);
+    }
   </script>
 </body>
 </html>
