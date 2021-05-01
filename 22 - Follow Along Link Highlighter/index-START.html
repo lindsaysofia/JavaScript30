@@ -31,7 +31,9 @@
     links.forEach(link => addEventListener('mouseover', handleMouseover));
 
     function handleMouseover(e) {
-      console.log(e.target.tagName);
+      if (e.target.tagName === 'A') {
+        e.target.classList.add('highlight');
+      }
     }
   </script>
 </body>
