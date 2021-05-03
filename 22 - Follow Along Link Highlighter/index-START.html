@@ -27,21 +27,26 @@
 
   <script>
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
-    const links = document.querySelectorAll('li');
-    links.forEach(link => addEventListener('mouseover', handleMouseEnter));
-    links.forEach(link => addEventListener('mouseout', handleMouseLeave));
+    const links = document.querySelectorAll('a');
+    const highlight = document.createElement('span');
+    highlight.classList.add('highlight');
+    document.body.append(highlight);
 
-    function handleMouseOver(e) {
-      if (e.target.tagName === 'A') {
-        e.target.classList.add('highlight');
-      }
+    links.forEach(link => addEventListener('mouseenter', highlightLink));
+    // links.forEach(link => addEventListener('mouseleave', handleMouseOut));
+
+    function highlightLink(e) {
+      console.log('link');
+      // const linkCoords = e.getBoundingClientRect();
+      // highlight.style.width = `${linkCoords.width}px`;
+      // highlight.style.height = `${linkCoords.height};px`;
     }
 
-    function handleMouseOut(e) {
-      if (e.target.tagName === 'A') {
-        e.target.classList.remove('highlight');
-      }
-    }
+    // function handleMouseOut(e) {
+    //   if (e.target.tagName === 'A') {
+    //     e.target.classList.remove('highlight');
+    //   }
+    // }
   </script>
 </body>
 </html>
