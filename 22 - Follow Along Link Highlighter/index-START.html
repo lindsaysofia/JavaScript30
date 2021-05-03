@@ -28,18 +28,16 @@
   <script>
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
     const links = document.querySelectorAll('li');
-    links.forEach(link => addEventListener('mouseenter', handleMouseEnter));
-    links.forEach(link => addEventListener('mouseleave', handleMouseLeave));
+    links.forEach(link => addEventListener('mouseover', handleMouseEnter));
+    links.forEach(link => addEventListener('mouseout', handleMouseLeave));
 
-    function handleMouseEnter(e) {
-      console.log('mouseenter');
+    function handleMouseOver(e) {
       if (e.target.tagName === 'A') {
         e.target.classList.add('highlight');
       }
     }
 
-    function handleMouseLeave(e) {
-      console.log('mouseleave');
+    function handleMouseOut(e) {
       if (e.target.tagName === 'A') {
         e.target.classList.remove('highlight');
       }
