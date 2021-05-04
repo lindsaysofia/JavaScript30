@@ -33,19 +33,19 @@
     document.body.append(highlight);
 
     links.forEach(link => addEventListener('mouseover', highlightLink));
-    links.forEach(link => addEventListener('mouseout', handleMouseOut));
 
     function highlightLink(e) {
-      highlight.style.width = `${100}px`;
-      highlight.style.height = `${100};px`;
-      highlight.style.transform = `translate(${100}px, ${100}px)`;
-    }
-
-    function handleMouseOut(e) {
       if (e.target.tagName === 'A') {
-        highlight.style.width = `${0}px`;
-        highlight.style.height = `${0};px`;
-        highlight.style.transform = `translate(${100}px, ${100}px)`
+        const linkCoords = e.target.getBoundingClientRect();
+        const coords = {
+          width: linkCoords.width,
+          height: linkCoords.height,
+          top: linkCoords.top + window.scrollY,
+          left: linkCoords.left + window.scrollX,
+        };
+        highlight.style.width = `${coords.width}px`;
+        highlight.style.height = `${coords.height}px`;
+        highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
       }
     }
   </script>
