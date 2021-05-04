@@ -32,21 +32,22 @@
     highlight.classList.add('highlight');
     document.body.append(highlight);
 
-    links.forEach(link => addEventListener('mouseenter', highlightLink));
-    // links.forEach(link => addEventListener('mouseleave', handleMouseOut));
+    links.forEach(link => addEventListener('mouseover', highlightLink));
+    links.forEach(link => addEventListener('mouseout', handleMouseOut));
 
     function highlightLink(e) {
-      console.log('link');
-      // const linkCoords = e.getBoundingClientRect();
-      // highlight.style.width = `${linkCoords.width}px`;
-      // highlight.style.height = `${linkCoords.height};px`;
+      highlight.style.width = `${100}px`;
+      highlight.style.height = `${100};px`;
+      highlight.style.transform = `translate(${100}px, ${100}px)`;
     }
 
-    // function handleMouseOut(e) {
-    //   if (e.target.tagName === 'A') {
-    //     e.target.classList.remove('highlight');
-    //   }
-    // }
+    function handleMouseOut(e) {
+      if (e.target.tagName === 'A') {
+        highlight.style.width = `${0}px`;
+        highlight.style.height = `${0};px`;
+        highlight.style.transform = `translate(${100}px, ${100}px)`
+      }
+    }
   </script>
 </body>
 </html>
