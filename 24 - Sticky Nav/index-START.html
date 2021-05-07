@@ -62,23 +62,15 @@
   window.addEventListener('scroll', handleScroll);
 
   function handleScroll(e) {
-    if (window.scrollY > target) {
-      fixNav();
+    if (window.scrollY >= target) {
+      // add padding so we don't have a weird jump
+      document.body.style.paddingTop = `${nav.offsetHeight}px`;
+      document.body.classList.add('fixed-nav');
     } else {
-      unfixNav();
+      document.body.style.paddingTop = 0;
+      document.body.classList.remove('fixed-nav');
     }
   }
-
-  function fixNav() {
-    nav.style.position = 'fixed';
-    logo.style.maxWidth = 'fit-content';
-  }
-
-  function unfixNav() {
-    nav.style.position = 'relative';
-    logo.style.maxWidth = '0';
-  }
-
 </script>
 
 </body>
