@@ -55,6 +55,30 @@
 
 <script>
 
+  const target = document.querySelector('header').offsetHeight;
+  const nav = document.querySelector('#main');
+  const logo = document.querySelector('.logo');
+
+  window.addEventListener('scroll', handleScroll);
+
+  function handleScroll(e) {
+    if (window.scrollY > target) {
+      fixNav();
+    } else {
+      unfixNav();
+    }
+  }
+
+  function fixNav() {
+    nav.style.position = 'fixed';
+    logo.style.maxWidth = 'fit-content';
+  }
+
+  function unfixNav() {
+    nav.style.position = 'relative';
+    logo.style.maxWidth = '0';
+  }
+
 </script>
 
 </body>
