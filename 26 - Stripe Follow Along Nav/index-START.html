@@ -234,8 +234,7 @@
     dropdownBackground.style.height = `${dropdownHeight}px`;
     dropdownBackground.style.width = `${dropdownWidth}px`;
     dropdownBackground.style.top = `${dropdownParent.offsetTop + dropdownParent.offsetHeight}px`;
-    dropdownBackground.style.left = `${dropdownParent.offsetLeft}px`;
-    console.log(dropdownParent.offsetLeft);
+    dropdownBackground.style.left = `${dropdown.offsetLeft + dropdownParent.offsetLeft}px`;
     dropdownBackground.classList.add('open');
 
   }
