@@ -237,8 +237,7 @@
     const dropdownWidth = dropdown.offsetWidth;
     dropdownBackground.style.height = `${dropdownHeight}px`;
     dropdownBackground.style.width = `${dropdownWidth}px`;
-    dropdownBackground.style.top = `${dropdownParent.offsetTop + dropdownParent.offsetHeight}px`;
-    dropdownBackground.style.left = `${dropdown.offsetLeft + dropdownParent.offsetLeft}px`;
+    dropdownBackground.style.transform = `translate(${dropdown.offsetLeft + dropdownParent.offsetLeft}px, ${dropdownParent.offsetTop + dropdownParent.offsetHeight}px)`;
   }
 
   function triggerLeave(e) {
