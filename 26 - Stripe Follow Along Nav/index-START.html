@@ -221,19 +221,21 @@
 
 <script>
   const dropdownBackground = document.querySelector('.dropdownBackground');
-  const li = document.querySelectorAll('.cool > *');
-  li.forEach(element => element.addEventListener('mouseenter', triggerEnter));
-  li.forEach(element => element.addEventListener('mouseleave', triggerLeave));
+  const dropdownParents = document.querySelectorAll('.cool > *');
+  dropdownParents.forEach(parent => parent.addEventListener('mouseenter', triggerEnter));
+  dropdownParents.forEach(parent => parent.addEventListener('mouseleave', triggerLeave));
 
   function triggerEnter(e) {
-    e.target.classList.add('trigger-enter', 'trigger-enter-active');
-    const dropdown = e.target.querySelector('.dropdown');
+    const dropdownParent = e.target;
+    dropdownParent.classList.add('trigger-enter', 'trigger-enter-active');
+    const dropdown = dropdownParent.querySelector('.dropdown');
     const dropdownHeight = dropdown.offsetHeight;
     const dropdownWidth = dropdown.offsetWidth;
     dropdownBackground.style.height = `${dropdownHeight}px`;
     dropdownBackground.style.width = `${dropdownWidth}px`;
-    dropdownBackground.style.Top = `${dropdown.offsetTop + e.target.offsetTop}px`;
-    dropdownBackground.style.Left = `${dropdown.offsetLeft}px`;
+    dropdownBackground.style.top = `${dropdownParent.offsetTop + dropdownParent.offsetHeight}px`;
+    dropdownBackground.style.left = `${dropdownParent.offsetLeft}px`;
+    console.log(dropdownParent.offsetLeft);
     dropdownBackground.classList.add('open');
 
   }
