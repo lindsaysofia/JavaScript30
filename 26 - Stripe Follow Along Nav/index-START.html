@@ -227,16 +227,18 @@
 
   function triggerEnter(e) {
     const dropdownParent = e.target;
-    dropdownParent.classList.add('trigger-enter', 'trigger-enter-active');
     const dropdown = dropdownParent.querySelector('.dropdown');
+
+    dropdownBackground.classList.add('open');
+    dropdownParent.classList.add('trigger-enter', 'trigger-enter-active');
+    
+    
     const dropdownHeight = dropdown.offsetHeight;
     const dropdownWidth = dropdown.offsetWidth;
     dropdownBackground.style.height = `${dropdownHeight}px`;
     dropdownBackground.style.width = `${dropdownWidth}px`;
     dropdownBackground.style.top = `${dropdownParent.offsetTop + dropdownParent.offsetHeight}px`;
     dropdownBackground.style.left = `${dropdown.offsetLeft + dropdownParent.offsetLeft}px`;
-    dropdownBackground.classList.add('open');
-
   }
 
   function triggerLeave(e) {
