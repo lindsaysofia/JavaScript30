@@ -232,12 +232,15 @@
     const dropdownWidth = dropdown.offsetWidth;
     dropdownBackground.style.height = `${dropdownHeight}px`;
     dropdownBackground.style.width = `${dropdownWidth}px`;
+    dropdownBackground.style.Top = `${dropdown.offsetTop + e.target.offsetTop}px`;
+    dropdownBackground.style.Left = `${dropdown.offsetLeft}px`;
     dropdownBackground.classList.add('open');
 
   }
 
   function triggerLeave(e) {
     e.target.classList.remove('trigger-enter', 'trigger-enter-active');
+    dropdownBackground.classList.remove('open');
   }
 </script>
 
