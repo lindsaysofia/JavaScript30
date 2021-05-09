@@ -220,12 +220,20 @@
 </style>
 
 <script>
+  const dropdownBackground = document.querySelector('.dropdownBackground');
   const li = document.querySelectorAll('.cool > *');
   li.forEach(element => element.addEventListener('mouseenter', triggerEnter));
   li.forEach(element => element.addEventListener('mouseleave', triggerLeave));
 
   function triggerEnter(e) {
     e.target.classList.add('trigger-enter', 'trigger-enter-active');
+    const dropdown = e.target.querySelector('.dropdown');
+    const dropdownHeight = dropdown.offsetHeight;
+    const dropdownWidth = dropdown.offsetWidth;
+    dropdownBackground.style.height = dropdownHeight;
+    dropdownBackground.style.width = dropdownWidth;
+    dropdownBackground.classList.add('open');
+
   }
 
   function triggerLeave(e) {
