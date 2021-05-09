@@ -230,8 +230,8 @@
     const dropdown = e.target.querySelector('.dropdown');
     const dropdownHeight = dropdown.offsetHeight;
     const dropdownWidth = dropdown.offsetWidth;
-    dropdownBackground.style.height = dropdownHeight;
-    dropdownBackground.style.width = dropdownWidth;
+    dropdownBackground.style.height = `${dropdownHeight}px`;
+    dropdownBackground.style.width = `${dropdownWidth}px`;
     dropdownBackground.classList.add('open');
 
   }
