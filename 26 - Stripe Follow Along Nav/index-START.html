@@ -229,8 +229,11 @@
     const dropdownParent = e.target;
     const dropdown = dropdownParent.querySelector('.dropdown');
 
+    dropdownParent.classList.add('trigger-enter');
     dropdownBackground.classList.add('open');
-    dropdownParent.classList.add('trigger-enter', 'trigger-enter-active');
+    setTimeout(() => {
+      dropdownParent.classList.add('trigger-enter-active');
+    }, 150);
     
     
     const dropdownHeight = dropdown.offsetHeight;
