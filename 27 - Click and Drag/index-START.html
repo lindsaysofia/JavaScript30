@@ -53,7 +53,7 @@
   function handleMouseMove(e) {
     if (!isMouseDown) return;
     let x = e.pageX;
-    itemsContainer.scrollBy(mousePosition.x - x, 0);
+    itemsContainer.scrollBy(mousePositionX - x, 0);
     mousePositionX = x;
   }
 
