@@ -36,9 +36,8 @@
 
 <script>
   const itemsContainer = document.querySelector('.items');
-  const items = document.querySelectorAll('.item');
   let isMouseDown = false;
-  let mousePosition = {x: 0, y: 0};
+  let mousePositionX = 0;
 
   itemsContainer.addEventListener('mousedown', handleMouseDown);
   itemsContainer.addEventListener('mousemove', handleMouseMove);
@@ -48,16 +47,14 @@
   function handleMouseDown(e) {
     isMouseDown = true;
     itemsContainer.classList.add('active');
-    mousePosition.x = e.pageX;
-    mousePosition.y = e.pageY;
+    mousePositionX= e.pageX;
   }
 
   function handleMouseMove(e) {
     if (!isMouseDown) return;
     let x = e.pageX;
-    let y = e.pageY;
     itemsContainer.scrollBy(mousePosition.x - x, 0);
-    mousePosition = {x, y};
+    mousePositionX = x;
   }
 
   function handleMouseUp(e) {
