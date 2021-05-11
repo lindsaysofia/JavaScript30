@@ -15,17 +15,34 @@
   </div>
 
 <script>
+  const video = document.querySelector('video');
   const speedContainer = document.querySelector('.speed');
   const speedBar = document.querySelector('.speed-bar');
+  const minSpeed = 0.4;
+  const maxSpeed = 4;
   let isMouseInSpeedContainer = false;
 
   speedContainer.addEventListener('mouseenter', handleMouseEnter);
+  speedContainer.addEventListener('mousemove', handleMouseMove);
+  speedContainer.addEventListener('mouseleave', () => isMouseInSpeedContainer = false);
 
   function handleMouseEnter(e) {
     isMouseInSpeedContainer = true;
-    let speedContainerOffsetY = e.offsetY;
-    let speedContainerHeight = speedContainer.offsetHeight;
+    
+    changeSpeedBar(e.offsetY, speedContainer.offsetHeight);
+  }
+
+  function handleMouseMove(e) {
+    if (!isMouseInSpeedContainer) return;
+    
+    changeSpeedBar(e.offsetY, speedContainer.offsetHeight);
+  }
+
+  function changeSpeedBar(speedContainerOffsetY, speedContainerHeight) {
     let speedBarPercentage = ((speedContainerOffsetY / speedContainerHeight) * 100).toFixed(2);
+    let newVideoSpeed = (((maxSpeed - minSpeed) * ((speedContainerOffsetY / speedContainerHeight))) + minSpeed).toFixed(1);
+    video.playbackRate = newVideoSpeed;
+    speedBar.textContent = `${newVideoSpeed}x`;
     speedBar.style.height = `${speedBarPercentage}%`;
   }
 </script>
