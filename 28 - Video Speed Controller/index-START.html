@@ -17,11 +17,16 @@
 <script>
   const speedContainer = document.querySelector('.speed');
   const speedBar = document.querySelector('.speed-bar');
+  let isMouseInSpeedContainer = false;
 
   speedContainer.addEventListener('mouseenter', handleMouseEnter);
 
   function handleMouseEnter(e) {
-    
+    isMouseInSpeedContainer = true;
+    let speedContainerOffsetY = e.offsetY;
+    let speedContainerHeight = speedContainer.offsetHeight;
+    let speedBarPercentage = ((speedContainerOffsetY / speedContainerHeight) * 100).toFixed(2);
+    speedBar.style.height = `${speedBarPercentage}%`;
   }
 </script>
 </body>
