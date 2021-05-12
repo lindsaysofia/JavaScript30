@@ -37,8 +37,35 @@
   const scoreBoard = document.querySelector('.score');
   const moles = document.querySelectorAll('.mole');
 
-  function getRandomNumber(min, max) {
+  let game;
+  let secondsLeftInGame;
+  let score;
+
+  moles.forEach(mole => mole.addEventListener('click', handleMoleClick));
+
+  function getRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  function startGame() {
+    clearInterval(game);
+    secondsLeftInGame = 10;
+    score = 0;
+    game = setInterval(() => {
+      if (secondsLeftInGame <= 0) clearInterval(game);
+      let randomHole = holes[getRandomInteger(0, holes.length - 1)];
+      let randomTimeUp = getRandomInteger(200, 2000);
+      randomHole.classList.add('up');
+      setTimeout(() => {
+        randomHole.classList.remove('up');
+      }, randomTimeUp);
+      secondsLeftInGame--;
+    }, 1000);
+  }
+
+  function handleMoleClick(e) {
+    score++;
+    scoreBoard.textContent = score;
   }
 
 </script>
