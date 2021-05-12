@@ -51,6 +51,7 @@
     clearInterval(game);
     secondsLeftInGame = 10;
     score = 0;
+    scoreBoard.textContent = 0;
     game = setInterval(() => {
       if (secondsLeftInGame <= 0) clearInterval(game);
       let randomHole = holes[getRandomInteger(0, holes.length - 1)];
